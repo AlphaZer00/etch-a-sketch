@@ -1,25 +1,27 @@
-
+window.onload = () => {
+    updateGridSize(16);
+}
 
 // Update Range Slider Input
 const sliderInput = document.querySelector("input");
 const number = document.querySelector(".slider-num");
 sliderInput.addEventListener("input", () => {
     size = sliderInput.value;
-    updateGridSize(size);
     number.textContent= size;
+    updateGridSize(size);
 });
 
 
 
-function updateGridSize(size) {
+function updateGridSize(num) {
 
     const gridContainer = document.querySelector(".grid-container");
-    gridContainer.style.gridTemplateColumns = `repeat(${size} , 1fr)`;
-    gridContainer.style.gridTemplateRows = `repeat(${size} , 1fr)`;
+    gridContainer.style.gridTemplateColumns = `repeat(${num} , 1fr)`;
+    gridContainer.style.gridTemplateRows = `repeat(${num} , 1fr)`;
     const squares = gridContainer.querySelectorAll("div");
     squares.forEach((div) => div.remove());
 
-    amount = sliderInput.value * sliderInput.value;
+    amount = num * num;
 
     for (let i=0; i < amount; i++) {
         const box = document.createElement("div");
