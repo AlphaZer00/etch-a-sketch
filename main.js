@@ -1,9 +1,13 @@
-window.onload = () => {
-    updateGridSize(16);
-}
+
+const gridContainer = document.querySelector(".grid-container");
+updateGridSize(16);
+
+const sliderInput = document.querySelector(".slide");
+const squares = gridContainer.querySelectorAll("div");
+console.log(squares);
+
 
 // Update Range Slider Input
-const sliderInput = document.querySelector("input");
 const number = document.querySelector(".slider-num");
 sliderInput.addEventListener("input", () => {
     size = sliderInput.value;
@@ -14,19 +18,41 @@ sliderInput.addEventListener("input", () => {
 
 
 function updateGridSize(num) {
-
-    const gridContainer = document.querySelector(".grid-container");
+    
     gridContainer.style.gridTemplateColumns = `repeat(${num} , 1fr)`;
     gridContainer.style.gridTemplateRows = `repeat(${num} , 1fr)`;
-    const squares = gridContainer.querySelectorAll("div");
-    squares.forEach((div) => div.remove());
-
+    //squares.forEach((div) => div.remove());
     amount = num * num;
 
     for (let i=0; i < amount; i++) {
         const box = document.createElement("div");
         gridContainer.appendChild(box);
         box.classList.add("boxes");
-    }
+    };
 }
+
+let mouseDownCheck = 0
+document.body.onmousedown = function() {
+    ++mouseDownCheck;
+}
+document.body.onmouseup = function() {
+    --mouseDownCheck;
+}
+
+function changeColor(e) {
+    if (e.type === "mouseover" && !mouseDownCheck) return
+    this.classList.add("hovered");
+}
+
+    squares.forEach((div) => {
+       div.addEventListener("mouseover", changeColor) 
+    });
+
+    squares.forEach((div) => {
+        div.addEventListener("mousedown", changeColor) 
+     }); 
+
+
+
+
 
