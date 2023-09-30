@@ -8,6 +8,9 @@ const penColorPicker = document.querySelector(".pen-color-input");
 const backgroundColorPicker = document.querySelector(".background-color-input");
 const untouchedBoxes = document.getElementsByClassName("boxes untouched");
 backgroundColorPicker.addEventListener("onchange", changeBackgroundColor());
+const clearButton = document.querySelector(".clear");
+clearButton.addEventListener("click", clearGrid);
+
 
 // Update Range Slider Input
 const number = document.querySelector(".slider-num");
@@ -55,5 +58,12 @@ function changeColor(e) {
 function changeBackgroundColor() {
     Array.from(untouchedBoxes).forEach((div) => {
         div.style.backgroundColor = backgroundColorPicker.value;
+    })
+}
+
+function clearGrid() {
+    const boxes = gridContainer.childNodes;
+    boxes.forEach((div) => {
+        div.style.backgroundColor= backgroundColorPicker.value;
     })
 }
