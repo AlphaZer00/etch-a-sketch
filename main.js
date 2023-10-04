@@ -2,6 +2,9 @@
 const gridContainer = document.querySelector(".grid-container");
 const backgroundColorPicker = document.querySelector(".background-color-input");
 const untouchedBoxes = document.getElementsByClassName("boxes untouched");
+
+const boxes = gridContainer.querySelectorAll("div");
+
 updateGridSize(16);
 
 const sliderInput = document.querySelector(".slide");
@@ -9,6 +12,8 @@ const penColorPicker = document.querySelector(".pen-color-input");
 backgroundColorPicker.addEventListener("onchange", changeBackgroundColor());
 const clearButton = document.querySelector(".clear");
 clearButton.addEventListener("click", clearGrid);
+const eraserButton = document.querySelector(".eraser");
+eraserButton.addEventListener("click", toggleEraserStatus);
 
 // Update Range Slider Input
 const number = document.querySelector(".slider-num");
@@ -22,7 +27,7 @@ function updateGridSize(num) {
     gridContainer.style.gridTemplateColumns = `repeat(${num} , 1fr)`;
     gridContainer.style.gridTemplateRows = `repeat(${num} , 1fr)`;
     amount = num * num;
-    const boxes = gridContainer.querySelectorAll("div");
+    
     boxes.forEach((div) => div.remove());
 
     for (let i=0; i < amount; i++) {
@@ -47,8 +52,15 @@ document.body.onmouseup = function() {
 
 function changeColor(e) {
     if (e.type === "mouseover" && !mouseDownCheck) return
-    this.classList.remove("untouched");
-    this.style.backgroundColor = penColorPicker.value;
+    if (eraserStatus) {
+        this.classList.add("untouched");
+        Array.from(untouchedBoxes).forEach((div) => {
+            div.style.backgroundColor = backgroundColorPicker.value;
+        })
+    } else {
+        this.classList.remove("untouched");
+        this.style.backgroundColor = penColorPicker.value;
+    }
 }
 
 function changeBackgroundColor() {
@@ -60,6 +72,18 @@ function changeBackgroundColor() {
 function clearGrid() {
     const boxes = gridContainer.childNodes;
     boxes.forEach((div) => {
+        div.classList.add("untouched");
         div.style.backgroundColor= backgroundColorPicker.value;
     })
+}
+
+let eraserStatus=false;
+function toggleEraserStatus() { 
+    eraserStatus = !eraserStatus;
+    console.log(eraserStatus);
+
+}
+
+function erase() {
+  
 }
