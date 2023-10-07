@@ -14,6 +14,8 @@ const clearButton = document.querySelector(".clear");
 clearButton.addEventListener("click", clearGrid);
 const eraserButton = document.querySelector(".eraser");
 eraserButton.addEventListener("click", toggleEraserStatus);
+const rainbowButton = document.querySelector(".rainbow");
+rainbowButton.addEventListener("click", toggleRainbowMode);
 
 // Update Range Slider Input
 const number = document.querySelector(".slider-num");
@@ -38,7 +40,9 @@ function updateGridSize(num) {
         box.addEventListener("mouseover", changeColor);
         box.addEventListener("mousedown", changeColor);
         box.style.backgroundColor = backgroundColorPicker.value;
+        
     }
+    clearGrid();
 }
 
 //Check if mouse is pressed down
@@ -57,6 +61,10 @@ function changeColor(e) {
         Array.from(untouchedBoxes).forEach((div) => {
             div.style.backgroundColor = backgroundColorPicker.value;
         })
+    }else if (rainbowMode === true) {
+        this.classList.remove("untouched");
+        let newRandomColor = "#" + Math.floor(Math.random()*16777215).toString(16);
+        this.style.backgroundColor = newRandomColor;
     } else {
         this.classList.remove("untouched");
         this.style.backgroundColor = penColorPicker.value;
@@ -79,11 +87,22 @@ function clearGrid() {
 
 let eraserStatus=false;
 function toggleEraserStatus() { 
+    eraserButton.classList.toggle("active");
+    if (rainbowMode === true) {
+        rainbowMode = !rainbowMode;
+        rainbowButton.classList.toggle("active");
+    }
     eraserStatus = !eraserStatus;
     console.log(eraserStatus);
-
 }
 
-function erase() {
-  
+let rainbowMode = false;
+function toggleRainbowMode() {
+    rainbowButton.classList.toggle("active");
+    if (eraserStatus === true) {
+        eraserStatus = !eraserStatus;
+        eraserButton.classList.toggle("active");
+    }
+    rainbowMode = !rainbowMode;
+    console.log(rainbowMode);
 }
