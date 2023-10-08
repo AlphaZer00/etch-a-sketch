@@ -1,4 +1,3 @@
-
 const gridContainer = document.querySelector(".grid-container");
 const backgroundColorPicker = document.querySelector(".background-color-input");
 const untouchedBoxes = document.getElementsByClassName("boxes untouched");
@@ -31,7 +30,7 @@ function updateGridSize(num) {
     amount = num * num;
     
     boxes.forEach((div) => div.remove());
-
+    clearGrid();
     for (let i=0; i < amount; i++) {
         const box = document.createElement("div");
         gridContainer.appendChild(box);
@@ -39,19 +38,17 @@ function updateGridSize(num) {
         box.classList.add("untouched"); 
         box.addEventListener("mouseover", changeColor);
         box.addEventListener("mousedown", changeColor);
-        box.style.backgroundColor = backgroundColorPicker.value;
-        
+        box.style.backgroundColor = backgroundColorPicker.value; 
     }
-    clearGrid();
 }
 
 //Check if mouse is pressed down
-let mouseDownCheck = 0
+let mouseDownCheck = false
 document.body.onmousedown = function() {
-    ++mouseDownCheck;
+    mouseDownCheck = true;
 }
 document.body.onmouseup = function() {
-    --mouseDownCheck;
+    mouseDownCheck = false;
 }
 
 function changeColor(e) {

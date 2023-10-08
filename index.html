@@ -4,7 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Etch-a-Sketch</title>
-    
+    <script src="html2canvas.min.js"></script>
+    <script>
+        function saveImage() {
+            html2canvas(document.getElementById("grid-container")).then(function (canvas) {
+                canvas.style.display = "none";
+                document.body.appendChild(canvas);
+                return canvas;
+            })
+            .then(canvas => {
+                const image = canvas.toDataURL("image/jpeg", 1);
+                const a =document.createElement("a");
+                a.setAttribute("download", "my-image.jpeg");
+                a.setAttribute("href", image);
+                a.click();
+                canvas.remove();
+            })
+        }
+    </script>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -23,9 +40,9 @@
             <button class="rainbow">Rainbow Mode</button>
             <button class="clear">Clear</button>
             <div class="grid-slider"></div>
-            <button class="save">Save</button>
+            <button class="save" onclick="saveImage()">Save</button>
         </div>
-        <div class="grid-container"></div>
+        <div id="grid-container" class="grid-container"></div>
         <div class="slider">
             <input class="slide" type="range" min="4" max="64" value="16" />
             <span class="slider-num">16</span>
