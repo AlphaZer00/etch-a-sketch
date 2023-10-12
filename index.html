@@ -25,29 +25,37 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <H1>Title</H1>
-    <div class="sidebar">
-        <div class="button-container">
-            <div class="pen-color-container">
-                <input class="pen-color-input" type="color">
-                <p>Pen Color</p>
+    <div class="wrapper">
+        <div class="device-body">
+            <p class="title">Etch a Sketch</p>
+            <div class="content-container">
+                <div class="sidebar">   
+                    <div class="button-container">
+                        <div class="pen-color-container">
+                            <input class="pen-color-input" type="color">
+                            <p>Pen Color</p>
+                        </div>
+                        <div class="bg-color-container">
+                            <input class="background-color-input" type="color" value="#ffffff" onchange="changeBackgroundColor();"></button>
+                            <p>Background Color</p>
+                        </div>
+                        <button class="eraser">Eraser</button>
+                        <button class="rainbow">Rainbow Mode</button>
+                        <button class="clear">Clear</button>
+                        <div class="grid-slider"></div>
+                        <button class="save" onclick="saveImage()">Save</button>
+                    </div>
+                    
+                    <div class="slider">
+                        <input class="slide" type="range" min="4" max="64" value="16" />
+                        <span class="slider-num">16</span>
+                    </div>
+                </div>
+                <div id="grid-container" class="grid-container"></div>
             </div>
-            <div class="bg-color-container">
-                <input class="background-color-input" type="color" value="#ffffff" onchange="changeBackgroundColor();"></button>
-                <p>Background Color</p>
-            </div>
-            <button class="eraser">Eraser</button>
-            <button class="rainbow">Rainbow Mode</button>
-            <button class="clear">Clear</button>
-            <div class="grid-slider"></div>
-            <button class="save" onclick="saveImage()">Save</button>
-        </div>
-        <div id="grid-container" class="grid-container"></div>
-        <div class="slider">
-            <input class="slide" type="range" min="4" max="64" value="16" />
-            <span class="slider-num">16</span>
         </div>
     </div>
+    <div class="footer"><a href="https://github.com/AlphaZer00">GitHub</a> </div>
 </body>
 <script src="main.js"></script>
 </html>
