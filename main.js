@@ -1,20 +1,18 @@
 const gridContainer = document.querySelector(".grid-container");
 const backgroundColorPicker = document.querySelector(".background-color-input");
 const untouchedBoxes = document.getElementsByClassName("boxes untouched");
-
 const boxes = gridContainer.querySelectorAll("div");
-
-updateGridSize(16);
-
 const sliderInput = document.querySelector(".slide");
 const penColorPicker = document.querySelector(".pen-color-input");
-backgroundColorPicker.addEventListener("onchange", changeBackgroundColor());
 const clearButton = document.querySelector(".clear");
-clearButton.addEventListener("click", clearGrid);
 const eraserButton = document.querySelector(".eraser");
-eraserButton.addEventListener("click", toggleEraserStatus);
 const rainbowButton = document.querySelector(".rainbow");
+
+backgroundColorPicker.addEventListener("onchange", changeBackgroundColor());
+clearButton.addEventListener("click", clearGrid);
+eraserButton.addEventListener("click", toggleEraserStatus);
 rainbowButton.addEventListener("click", toggleRainbowMode);
+
 
 // Update Range Slider Input
 const number = document.querySelector(".slider-num");
@@ -103,3 +101,5 @@ function toggleRainbowMode() {
     rainbowMode = !rainbowMode;
     console.log(rainbowMode);
 }
+
+window.onload(updateGridSize(16));
