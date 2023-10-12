@@ -1,1 +1,6 @@
 # etch-a-sketch
+This project was an exercise in expanding upon my previous knowledge of JavaScript. The most interesting part of this project for me was interacting with dynamically created HTML elements. I became familiar with NodeLists, HTML collections, and arrays. I used all three of them at some point in the project when creating variables to reference the dynamically created boxes in the grid in order to understand the syntax and functionality of each object. 
+
+Much of the stack overflow posts I read when troubleshooting my functions used jQuery. It appears to be a very simple yet effective tool for cutting down the total lines of code required for DOM manipulation and event handling. I'm planning on exploring it in the near future.
+
+I decided to add a save button so that the user can download an image of their drawing. I used the html2canvas library to accomplish this. This was the first time I used a library and I had the most trouble with this step of the project. I was attempting to create the function to save the image in the external script file but JavaScript wasn't recognizing the library functions. After unsuccessfully messing around with RequireJS and npm installs I eventually found a way to implement the library by manually linking the library and coding the saveImage function in the HTML file itself.
